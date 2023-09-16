@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import vscode from "vscode";
-import os from "os";
+import os from "os"; 
 import logi from "../logi-plugin-sdk-js/client.js";
 import fs from "fs-extra";
 
@@ -9,7 +9,7 @@ import fs from "fs-extra";
 // Your extension is activated the very first time the command is executed
 
 let SDKClient;
-
+ 
 async function loadModules() {
   const module = await import("./extension.mjs");
   SDKClient = module.default;
@@ -19,7 +19,7 @@ async function loadModules() {
  * @param {vscode.ExtensionContext} context
  */
 async function activate(context) {
-  await loadModules();
+   await loadModules();
   const isInitialInstall = context.globalState.get("isInitialInstall", true);
 
   if (isInitialInstall) {
@@ -41,6 +41,7 @@ async function activate(context) {
   const SCROLL_BUTTON = "mx-master-3s-2b034_c82";
   const THUMB_BUTTON = "mx-master-3s-2b034_c195";
   const PROFILE_BUTTON = "mx-master-3s-2b034_c196";
+
 
   const clientApp = new logi(initialData6);
   clientApp.init();
@@ -109,4 +110,9 @@ const install = async () => {
   await fs.copy(__dirname + "\\manifest.json", pluginPath + "manifest.json", {
     overwrite: true,
   });
+};
+
+const main = require("./main-esm");
+exports.activate = function (context) {
+  main.activate(context);
 };
