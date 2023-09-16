@@ -1,0 +1,29 @@
+{
+  "plugin_id": "logi_weather_plug_in",
+  "name": "Logi Weather Plug-in",
+  "author": "Logitech Inc.",
+  "description": "Example plug-in for HackZürich",
+  "version": "1.0.0",
+  "colorScheme": "",
+  "URL": "https://www.logitech.com/",
+  "platformVersion": "1.0",
+  "OS": [
+    {
+      "platform": "mac",
+      "minimumVersion": "12.0"
+    },
+    {
+      "platform": "windows",
+      "minimumVersion": "10"
+    }
+  ],
+  "actions": [
+    {
+      "id": "get_local_weather",
+      "icon": "action_1.png",
+      "tooltip": "Display the weather in your location",
+      "name": "Display Local Weather"
+    }
+  ],
+  "requiredCapabilities": ["base"]
+}

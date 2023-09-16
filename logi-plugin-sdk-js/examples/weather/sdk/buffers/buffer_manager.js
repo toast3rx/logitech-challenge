@@ -74,6 +74,4 @@ class BufferManager {
 
 }
 
-// export default BufferManager;
-
-module.exports = BufferManager;
+export default BufferManager;

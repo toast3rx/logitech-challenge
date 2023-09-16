@@ -1,8 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-const logi = import('logi-plugin-sdk');
-console.log(logi);
+const LogiClient = require('logi-plugin-sdk');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -50,3 +49,8 @@ module.exports = {
 	activate,
 	deactivate
 }
+
+// export {
+// 	activate,
+// 	deactivate,
+// }

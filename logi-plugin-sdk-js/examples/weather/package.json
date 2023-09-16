@@ -1,0 +1,19 @@
+{
+  "name": "logi-weather-1.0.0",
+  "version": "1.0.0",
+  "description": "Example plug-in for HackZürich",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.3.1",
+    "open": "^9.1.0",
+    "reconnecting-websocket": "^4.4.0",
+    "ws": "^8.14.1"
+  }
+}

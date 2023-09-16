@@ -3,14 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-const { Any, proto3 } = require("@bufbuild/protobuf");
+import { Any, proto3 } from "@bufbuild/protobuf";
 
 /**
  * wrapper around messages
  *
  * @generated from message logi.plugin.protocol.Envelope
  */
-const Envelope = proto3.makeMessageType(
+export const Envelope = proto3.makeMessageType(
   "logi.plugin.protocol.Envelope",
   () => [
     { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
@@ -22,7 +22,7 @@ const Envelope = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.ResponseInfo
  */
-const ResponseInfo = proto3.makeMessageType(
+export const ResponseInfo = proto3.makeMessageType(
   "logi.plugin.protocol.ResponseInfo",
   () => [
     { no: 1, name: "code", kind: "enum", T: proto3.getEnumType(ResponseInfo_Code) },
@@ -33,7 +33,7 @@ const ResponseInfo = proto3.makeMessageType(
 /**
  * @generated from enum logi.plugin.protocol.ResponseInfo.Code
  */
-const ResponseInfo_Code = proto3.makeEnum(
+export const ResponseInfo_Code = proto3.makeEnum(
   "logi.plugin.protocol.ResponseInfo.Code",
   [
     {no: 0, name: "INVALID"},
@@ -60,7 +60,7 @@ const ResponseInfo_Code = proto3.makeEnum(
  *
  * @generated from message logi.plugin.protocol.PluginHello
  */
-const PluginHello = proto3.makeMessageType(
+export const PluginHello = proto3.makeMessageType(
   "logi.plugin.protocol.PluginHello",
   () => [
     { no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -75,7 +75,7 @@ const PluginHello = proto3.makeMessageType(
  *
  * @generated from message logi.plugin.protocol.ManagerHello
  */
-const ManagerHello = proto3.makeMessageType(
+export const ManagerHello = proto3.makeMessageType(
   "logi.plugin.protocol.ManagerHello",
   () => [
     { no: 1, name: "manager_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -89,7 +89,7 @@ const ManagerHello = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.RetryAfter
  */
-const RetryAfter = proto3.makeMessageType(
+export const RetryAfter = proto3.makeMessageType(
   "logi.plugin.protocol.RetryAfter",
   () => [
     { no: 1, name: "interval", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
@@ -101,7 +101,7 @@ const RetryAfter = proto3.makeMessageType(
  *
  * @generated from message logi.plugin.protocol.Ping
  */
-const Ping = proto3.makeMessageType(
+export const Ping = proto3.makeMessageType(
   "logi.plugin.protocol.Ping",
   [],
 );
@@ -111,7 +111,7 @@ const Ping = proto3.makeMessageType(
  *
  * @generated from message logi.plugin.protocol.Pong
  */
-const Pong = proto3.makeMessageType(
+export const Pong = proto3.makeMessageType(
   "logi.plugin.protocol.Pong",
   [],
 );
@@ -119,7 +119,7 @@ const Pong = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.TriggerAction
  */
-const TriggerAction = proto3.makeMessageType(
+export const TriggerAction = proto3.makeMessageType(
   "logi.plugin.protocol.TriggerAction",
   () => [
     { no: 1, name: "action_instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -131,7 +131,7 @@ const TriggerAction = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.ReleaseAction
  */
-const ReleaseAction = proto3.makeMessageType(
+export const ReleaseAction = proto3.makeMessageType(
   "logi.plugin.protocol.ReleaseAction",
   () => [
     { no: 1, name: "action_instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -143,7 +143,7 @@ const ReleaseAction = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.VisibilityChangedList
  */
-const VisibilityChangedList = proto3.makeMessageType(
+export const VisibilityChangedList = proto3.makeMessageType(
   "logi.plugin.protocol.VisibilityChangedList",
   () => [
     { no: 1, name: "visibility", kind: "message", T: VisibilityChanged, repeated: true },
@@ -153,7 +153,7 @@ const VisibilityChangedList = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.VisibilityChanged
  */
-const VisibilityChanged = proto3.makeMessageType(
+export const VisibilityChanged = proto3.makeMessageType(
   "logi.plugin.protocol.VisibilityChanged",
   () => [
     { no: 1, name: "control_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -166,7 +166,7 @@ const VisibilityChanged = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.Settings
  */
-const Settings = proto3.makeMessageType(
+export const Settings = proto3.makeMessageType(
   "logi.plugin.protocol.Settings",
   () => [
     { no: 1, name: "setting_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -177,7 +177,7 @@ const Settings = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.SettingsRequest
  */
-const SettingsRequest = proto3.makeMessageType(
+export const SettingsRequest = proto3.makeMessageType(
   "logi.plugin.protocol.SettingsRequest",
   () => [
     { no: 1, name: "setting_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -187,7 +187,7 @@ const SettingsRequest = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.LogEvent
  */
-const LogEvent = proto3.makeMessageType(
+export const LogEvent = proto3.makeMessageType(
   "logi.plugin.protocol.LogEvent",
   () => [
     { no: 1, name: "log_level", kind: "enum", T: proto3.getEnumType(LogEvent_LOG_LEVEL) },
@@ -198,7 +198,7 @@ const LogEvent = proto3.makeMessageType(
 /**
  * @generated from enum logi.plugin.protocol.LogEvent.LOG_LEVEL
  */
-const LogEvent_LOG_LEVEL = proto3.makeEnum(
+export const LogEvent_LOG_LEVEL = proto3.makeEnum(
   "logi.plugin.protocol.LogEvent.LOG_LEVEL",
   [
     {no: 0, name: "TRACE"},
@@ -215,7 +215,7 @@ const LogEvent_LOG_LEVEL = proto3.makeEnum(
  *
  * @generated from message logi.plugin.protocol.UpdateAnalogControl
  */
-const UpdateAnalogControl = proto3.makeMessageType(
+export const UpdateAnalogControl = proto3.makeMessageType(
   "logi.plugin.protocol.UpdateAnalogControl",
   () => [
     { no: 1, name: "analog_control_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -232,7 +232,7 @@ const UpdateAnalogControl = proto3.makeMessageType(
  * @generated from message logi.plugin.protocol.GetAnalogControlValue
  * @deprecated
  */
-const GetAnalogControlValue = proto3.makeMessageType(
+export const GetAnalogControlValue = proto3.makeMessageType(
   "logi.plugin.protocol.GetAnalogControlValue",
   () => [
     { no: 1, name: "analog_control_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -246,7 +246,7 @@ const GetAnalogControlValue = proto3.makeMessageType(
  *
  * @generated from message logi.plugin.protocol.GetActionStatus
  */
-const GetActionStatus = proto3.makeMessageType(
+export const GetActionStatus = proto3.makeMessageType(
   "logi.plugin.protocol.GetActionStatus",
   () => [
     { no: 1, name: "action_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -261,7 +261,7 @@ const GetActionStatus = proto3.makeMessageType(
  * @generated from message logi.plugin.protocol.AnalogControlStatusList
  * @deprecated
  */
-const AnalogControlStatusList = proto3.makeMessageType(
+export const AnalogControlStatusList = proto3.makeMessageType(
   "logi.plugin.protocol.AnalogControlStatusList",
   () => [
     { no: 1, name: "statuses", kind: "message", T: AnalogControlStatus, repeated: true },
@@ -274,7 +274,7 @@ const AnalogControlStatusList = proto3.makeMessageType(
  * @generated from message logi.plugin.protocol.AnalogControlStatus
  * @deprecated
  */
-const AnalogControlStatus = proto3.makeMessageType(
+export const AnalogControlStatus = proto3.makeMessageType(
   "logi.plugin.protocol.AnalogControlStatus",
   () => [
     { no: 1, name: "analog_control_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -295,7 +295,7 @@ const AnalogControlStatus = proto3.makeMessageType(
  * @generated from enum logi.plugin.protocol.AnalogControlStatus.IMAGE_TYPE
  * @deprecated
  */
-const AnalogControlStatus_IMAGE_TYPE = proto3.makeEnum(
+export const AnalogControlStatus_IMAGE_TYPE = proto3.makeEnum(
   "logi.plugin.protocol.AnalogControlStatus.IMAGE_TYPE",
   [
     {no: 0, name: "NONE"},
@@ -310,7 +310,7 @@ const AnalogControlStatus_IMAGE_TYPE = proto3.makeEnum(
  * @generated from message logi.plugin.protocol.ActionCellStatus
  * @deprecated
  */
-const ActionCellStatus = proto3.makeMessageType(
+export const ActionCellStatus = proto3.makeMessageType(
   "logi.plugin.protocol.ActionCellStatus",
   () => [
     { no: 1, name: "action_instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -327,7 +327,7 @@ const ActionCellStatus = proto3.makeMessageType(
  * @generated from enum logi.plugin.protocol.ActionCellStatus.IMAGE_TYPE
  * @deprecated
  */
-const ActionCellStatus_IMAGE_TYPE = proto3.makeEnum(
+export const ActionCellStatus_IMAGE_TYPE = proto3.makeEnum(
   "logi.plugin.protocol.ActionCellStatus.IMAGE_TYPE",
   [
     {no: 0, name: "NONE"},
@@ -341,7 +341,7 @@ const ActionCellStatus_IMAGE_TYPE = proto3.makeEnum(
  *
  * @generated from message logi.plugin.protocol.ActionStatusList
  */
-const ActionStatusList = proto3.makeMessageType(
+export const ActionStatusList = proto3.makeMessageType(
   "logi.plugin.protocol.ActionStatusList",
   () => [
     { no: 1, name: "statuses", kind: "message", T: ActionStatus, repeated: true },
@@ -353,7 +353,7 @@ const ActionStatusList = proto3.makeMessageType(
  *
  * @generated from message logi.plugin.protocol.ActionStatus
  */
-const ActionStatus = proto3.makeMessageType(
+export const ActionStatus = proto3.makeMessageType(
   "logi.plugin.protocol.ActionStatus",
   () => [
     { no: 1, name: "action_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -373,7 +373,7 @@ const ActionStatus = proto3.makeMessageType(
 /**
  * @generated from enum logi.plugin.protocol.ActionStatus.IMAGE_TYPE
  */
-const ActionStatus_IMAGE_TYPE = proto3.makeEnum(
+export const ActionStatus_IMAGE_TYPE = proto3.makeEnum(
   "logi.plugin.protocol.ActionStatus.IMAGE_TYPE",
   [
     {no: 0, name: "NONE"},
@@ -385,7 +385,7 @@ const ActionStatus_IMAGE_TYPE = proto3.makeEnum(
 /**
  * @generated from message logi.plugin.protocol.PluginActionConfigurationSchemeRequest
  */
-const PluginActionConfigurationSchemeRequest = proto3.makeMessageType(
+export const PluginActionConfigurationSchemeRequest = proto3.makeMessageType(
   "logi.plugin.protocol.PluginActionConfigurationSchemeRequest",
   () => [
     { no: 1, name: "action_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -397,7 +397,7 @@ const PluginActionConfigurationSchemeRequest = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.UserInfo
  */
-const UserInfo = proto3.makeMessageType(
+export const UserInfo = proto3.makeMessageType(
   "logi.plugin.protocol.UserInfo",
   () => [
     { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -409,7 +409,7 @@ const UserInfo = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.UserInfoList
  */
-const UserInfoList = proto3.makeMessageType(
+export const UserInfoList = proto3.makeMessageType(
   "logi.plugin.protocol.UserInfoList",
   () => [
     { no: 1, name: "user_info", kind: "message", T: UserInfo, repeated: true },
@@ -419,7 +419,7 @@ const UserInfoList = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.GetUserInfoList
  */
-const GetUserInfoList = proto3.makeMessageType(
+export const GetUserInfoList = proto3.makeMessageType(
   "logi.plugin.protocol.GetUserInfoList",
   [],
 );
@@ -427,7 +427,7 @@ const GetUserInfoList = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.InitLogin
  */
-const InitLogin = proto3.makeMessageType(
+export const InitLogin = proto3.makeMessageType(
   "logi.plugin.protocol.InitLogin",
   () => [
     { no: 1, name: "redirect_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -437,7 +437,7 @@ const InitLogin = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.Logout
  */
-const Logout = proto3.makeMessageType(
+export const Logout = proto3.makeMessageType(
   "logi.plugin.protocol.Logout",
   () => [
     { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -447,7 +447,7 @@ const Logout = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.PluginActionConfigurationSchemeResponse
  */
-const PluginActionConfigurationSchemeResponse = proto3.makeMessageType(
+export const PluginActionConfigurationSchemeResponse = proto3.makeMessageType(
   "logi.plugin.protocol.PluginActionConfigurationSchemeResponse",
   () => [
     { no: 1, name: "login_required", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -464,7 +464,7 @@ const PluginActionConfigurationSchemeResponse = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.PluginActionConfigurationResponse
  */
-const PluginActionConfigurationResponse = proto3.makeMessageType(
+export const PluginActionConfigurationResponse = proto3.makeMessageType(
   "logi.plugin.protocol.PluginActionConfigurationResponse",
   () => [
     { no: 1, name: "action_instance_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -476,7 +476,7 @@ const PluginActionConfigurationResponse = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.SetData
  */
-const SetData = proto3.makeMessageType(
+export const SetData = proto3.makeMessageType(
   "logi.plugin.protocol.SetData",
   () => [
     { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -487,7 +487,7 @@ const SetData = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.GetData
  */
-const GetData = proto3.makeMessageType(
+export const GetData = proto3.makeMessageType(
   "logi.plugin.protocol.GetData",
   () => [
     { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -497,7 +497,7 @@ const GetData = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.WipeData
  */
-const WipeData = proto3.makeMessageType(
+export const WipeData = proto3.makeMessageType(
   "logi.plugin.protocol.WipeData",
   () => [
     { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -507,7 +507,7 @@ const WipeData = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.SavedData
  */
-const SavedData = proto3.makeMessageType(
+export const SavedData = proto3.makeMessageType(
   "logi.plugin.protocol.SavedData",
   () => [
     { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -518,7 +518,7 @@ const SavedData = proto3.makeMessageType(
 /**
  * @generated from message logi.plugin.protocol.OauthResponse
  */
-const OauthResponse = proto3.makeMessageType(
+export const OauthResponse = proto3.makeMessageType(
   "logi.plugin.protocol.OauthResponse",
   () => [
     { no: 1, name: "state", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -527,45 +527,3 @@ const OauthResponse = proto3.makeMessageType(
   ],
 );
 
-module.exports = {
-  Envelope,
-  ResponseInfo,
-  ResponseInfo_Code,
-  PluginHello,
-  ManagerHello,
-  RetryAfter,
-  Ping,
-  Pong,
-  TriggerAction,
-  ReleaseAction,
-  VisibilityChangedList,
-  VisibilityChanged,
-  Settings,
-  SettingsRequest,
-  LogEvent,
-  LogEvent_LOG_LEVEL,
-  UpdateAnalogControl,
-  GetAnalogControlValue,
-  GetActionStatus,
-  AnalogControlStatusList,
-  AnalogControlStatus,
-  AnalogControlStatus_IMAGE_TYPE,
-  ActionCellStatus,
-  ActionCellStatus_IMAGE_TYPE,
-  ActionStatusList,
-  ActionStatus,
-  ActionStatus_IMAGE_TYPE,
-  PluginActionConfigurationSchemeRequest,
-  UserInfo,
-  UserInfoList,
-  GetUserInfoList,
-  InitLogin,
-  Logout,
-  PluginActionConfigurationSchemeResponse,
-  PluginActionConfigurationResponse,
-  SetData,
-  GetData,
-  WipeData,
-  SavedData,
-  OauthResponse,
-}

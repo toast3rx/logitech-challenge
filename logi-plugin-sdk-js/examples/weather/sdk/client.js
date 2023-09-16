@@ -1,13 +1,7 @@
-// import ReconnectingWebSocket from 'reconnecting-websocket';
-// import WS from 'ws';
-// import Library from './library.js';
-// import BufferManager from './buffers/buffer_manager.js';
-
-const { ReconnectingWebSocket } = require('reconnecting-websocket');
-const WS = require('ws');
-const Library = require('./library.js');
-const BufferManager = require('./buffers/buffer_manager.js');
-
+import ReconnectingWebSocket from 'reconnecting-websocket';
+import WS from 'ws';
+import Library from './library.js';
+import BufferManager from './buffers/buffer_manager.js';
 
 class Client extends Library {
   constructor(initData) {
@@ -16,8 +10,8 @@ class Client extends Library {
     this.responseCallbacks = new Map();
   }
   #PORT = 30009;
-  #url = "ws://127.0.0.1:";
-  #token = "token=top_secret_code";
+  #url = 'ws://localhost:';
+  #token = 'token=top_secret_code';
   #ws = this.#connectToWebsocket();
   #bufferManager = new BufferManager(this, this.#ws);
   #msgId = 0;
@@ -31,7 +25,7 @@ class Client extends Library {
       WebSocket: WS, // custom WebSocket constructor
     };
     const socketURL = this.#getSocketUrl();
-    return new ReconnectingWebSocket(socketURL, ["Logi_JSON"], options);
+    return new ReconnectingWebSocket(socketURL, ['Logi_JSON'], options);
   }
 
   sendMessage = (type, obj, callback = undefined, timeOut = 10000) => {
@@ -40,32 +34,27 @@ class Client extends Library {
 
     if (callback) {
       const expirationTime = Date.now() + timeOut;
-      const obj = { callback, expirationTime };
+      const obj = { callback, expirationTime}
       this.responseCallbacks.set(id, obj);
     }
 
     try {
       this.#ws.send(message);
     } catch (e) {
-      console.log("Something went wrong with send message", e);
+      console.log('Something went wrong with send message', e);
     }
   };
 
   sendResponseMessage = (type, id, obj, err) => {
-    const messageWithResponse = this._getProtoMessageWithResponse(
-      type,
-      id,
-      obj,
-      err
-    );
+    const messageWithResponse = this._getProtoMessageWithResponse(type, id, obj, err);
 
     try {
       this.#ws.send(messageWithResponse);
       if (this.#bufferManager.isBufferingEnabled()) {
-        this.#bufferManager.processEvent("ResponseInfo", { id });
+        this.#bufferManager.processEvent('ResponseInfo', { id });
       }
     } catch (e) {
-      console.log("Something went wrong with send message", e);
+      console.log('Something went wrong with send message', e);
     }
   };
 
@@ -74,30 +63,25 @@ class Client extends Library {
 
     this.responseCallbacks.forEach((value, key) => {
       if (value.expirationTime < time) {
-        value.callback(null, 10000, "Response timed out.");
+        value.callback(null, 10000, 'Response timed out.');
         this.responseCallbacks.delete(key);
       }
     });
-  };
+  }
 
   init = () => {
-    this.#ws.addEventListener("open", () => {
-      this.sendMessage("PluginHello", this.initData);
+    this.#ws.addEventListener('open', () => {
+      this.sendMessage('PluginHello', this.initData);
     });
 
-    this.#ws.addEventListener("message", (event) => {
+    this.#ws.addEventListener('message', (event) => {
       const msgObg = JSON.parse(event.data);
 
       if (msgObg.response) {
         if (msgObg.message) {
           if (this.responseCallbacks.has(msgObg.id)) {
-
             const obj = this.responseCallbacks.get(msgObg.id);
-            obj.callback(
-              msgObg.message,
-              msgObg.response.code,
-              msgObg.response.what
-            );
+            obj.callback(msgObg.message, msgObg.response.code, msgObg.response.what);
             this.responseCallbacks.delete(msgObg.id);
           }
         }
@@ -106,7 +90,7 @@ class Client extends Library {
         return;
       }
 
-      const arrayWithType = msgObg.message["@type"].split(".");
+      const arrayWithType = msgObg.message['@type'].split('.');
       const type = arrayWithType[arrayWithType.length - 1];
 
       if (this.#bufferManager.isBufferingEnabled()) {
@@ -116,12 +100,12 @@ class Client extends Library {
       }
     });
 
-    this.#ws.addEventListener("error", (event) => {
-      console.log("Error websocket", event);
+    this.#ws.addEventListener('error', (event) => {
+      console.log('Error websocket', event);
     });
 
-    this.#ws.addEventListener("close", (event) => {
-      console.log("Close websocket", event);
+    this.#ws.addEventListener('close', (event) => {
+      console.log('Close websocket', event);
     });
   };
 
@@ -129,7 +113,7 @@ class Client extends Library {
     if (this.mapper.hasOwnProperty(type)) {
       this.mapper[type](msgObg, this.#ws);
     } else {
-      console.log("This type is not supported in client", type);
+      console.log('This type is not supported in client', type);
     }
   }
 
@@ -141,19 +125,17 @@ class Client extends Library {
     this.#bufferManager.registerBuffer(bufferName, buffer);
   }
 
-  flushBuffer(bufferName) {
+  flushBuffer (bufferName) {
     this.#bufferManager.flushBuffer(bufferName);
   }
 
-  flushAllBuffers() {
+  flushAllBuffers () {
     this.#bufferManager.flushAllBuffers();
   }
 
   getWebSocketState = () => {
     return this.#ws.readyState;
-  };
+  }
 }
 
-// export default Client;
-
-module.exports = Client;
+export default Client;

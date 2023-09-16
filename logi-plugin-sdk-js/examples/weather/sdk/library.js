@@ -1,37 +1,4 @@
-// const proto = require('./schema/logi_plugin_pb.js');
-
-// const Envelope = proto.Envelope;
-// const ManagerHello = proto.ManagerHello;
-// const PluginActionConfigurationSchemeResponse = proto.PluginActionConfigurationSchemeResponse;
-// const PluginHello = proto.PluginHello;
-// const Pong = proto.Pong;
-// const ResponseInfo = proto.ResponseInfo;
-// const RetryAfter = proto.RetryAfter;
-// const ReleaseAction = proto.ReleaseAction;
-// const VisibilityChanged = proto.VisibilityChanged;
-// const UpdateAnalogControl = proto.UpdateAnalogControl;
-// const Settings = proto.Settings;
-// const LogEvent = proto.LogEvent;
-// const SetData = proto.SetData;
-// const GetData = proto.GetData;
-// const WipeData = proto.WipeData;
-// const SavedData = proto.SavedData;
-// const OauthResponse = proto.OauthResponse;
-// const SettingsRequest = proto.SettingsRequest;
-// const GetAnalogControlValue = proto.GetAnalogControlValue;
-// const AnalogControlStatus = proto.AnalogControlStatus;
-// const ActionCellStatus = proto.ActionCellStatus;
-// const UserInfo = proto.UserInfo;
-// const InitLogin = proto.InitLogin;
-// const Logout = proto.Logout;
-// const AnalogControlStatusList = proto.AnalogControlStatusList;
-// const VisibilityChangedList = proto.VisibilityChangedList;
-// const GetUserInfoList = proto.GetUserInfoList;
-// const GetActionStatus = proto.GetActionStatus;
-// const ActionStatusList = proto.ActionStatusList;
-// const ActionStatus = proto.ActionStatus;
-
-const {
+import {
   Envelope,
   ManagerHello,
   PluginActionConfigurationSchemeResponse,
@@ -62,41 +29,7 @@ const {
   GetActionStatus,
   ActionStatusList,
   ActionStatus
-} = require('./schema/logi_plugin_pb.js');
-
-// import {
-//   Envelope,
-//   ManagerHello,
-//   PluginActionConfigurationSchemeResponse,
-//   PluginHello,
-//   Pong,
-//   ResponseInfo,
-//   RetryAfter,
-//   ReleaseAction,
-//   VisibilityChanged,
-//   UpdateAnalogControl,
-//   Settings,
-//   LogEvent,
-//   SetData,
-//   GetData,
-//   WipeData,
-//   SavedData,
-//   OauthResponse,
-//   SettingsRequest,
-//   GetAnalogControlValue,
-//   AnalogControlStatus,
-//   ActionCellStatus,
-//   UserInfo,
-//   InitLogin,
-//   Logout,
-//   AnalogControlStatusList,
-//   VisibilityChangedList,
-//   GetUserInfoList,
-//   GetActionStatus,
-//   ActionStatusList,
-//   ActionStatus
-// } from './schema/logi_plugin_pb.js';
-
+} from './schema/logi_plugin_pb.js';
 
 class Library {
   constructor() {
@@ -232,9 +165,9 @@ class Library {
     }
   };
 
-  _getProtoMessage = (protoName, messageId, obj = {}) => {
+  _getProtoMessage = (protoName, messageId,  obj= {}) => {
     const protoMessage = this.#getProto(protoName, obj);
-    const envelop = this.#getProto('Envelope', { id: messageId });
+    const envelop = this.#getProto('Envelope', {id: messageId});
     envelop.message = protoMessage;
     const envelopObj = JSON.parse(envelop.toJsonString());
     envelopObj.message = this.getType(protoMessage, protoName)
@@ -243,7 +176,7 @@ class Library {
   }
 
   _getProtoMessageWithResponse = (protoName, messageId, obj = {}, err = {}) => {
-    const envelop = this.#getProto('Envelope', { id: messageId });
+    const envelop = this.#getProto('Envelope', {id: messageId});
     const envelopObj = JSON.parse(envelop.toJsonString());
     if (protoName !== 'ResponseInfo') {
       const protoMessage = this.#getProto(protoName, obj);
@@ -278,7 +211,7 @@ class Library {
     }
   }
 
-  onHello() { }
+  onHello() {}
 
   onTriggerAction(msg, ws) {
     this.#defaultResponse(msg, ws);
@@ -374,6 +307,4 @@ class Library {
   }
 }
 
-// export default Library;
-
-module.exports = Library;
+export default Library;

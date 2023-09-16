@@ -100,7 +100,6 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "logi-plugin-sdk": "file:../logi-plugin-sdk-js",
-    "reconnecting-websocket": "^4.4.0"
+    "logi-plugin-sdk": "file:../logi-plugin-sdk-js"
   }
 }
