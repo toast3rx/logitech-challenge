@@ -12,35 +12,7 @@ console.log(logi);
  */
 function activate(context) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "logitech" is now active!');
 
-    const activeEditor = vscode.window.activeTextEditor;
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('logitech.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from logitech!');
-
-        vscode.commands.executeCommand("vscode.executeWorkspaceSymbolProvider", "activate").then(
-            function (symbols) {
-                console.log(symbols[0].location.range)
-
-                // vscode.commands.executeCommand("vscode.executeDocumentHighlights", activeEditor.document.uri, symbols[1].location).then(
-                //     function (symbols) {
-                //         console.log(symbols)
-                //     }
-                // );
-            }
-        );
-	});
-
-	context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
@@ -50,3 +22,22 @@ module.exports = {
 	activate,
 	deactivate
 }
+
+const install = async () => {
+  const isWin = process.platform === "win32";
+
+  const appDataPath =
+    os.platform() === "win32" ? process.env.LOCALAPPDATA : "PLM";
+
+  const pluginPath = isWin
+    ? appDataPath + `\\Logi\\PluginFramework\\plugins\\logi_test_plugin\\`
+    : `${process.env.HOME}/Library/Application Support/Logitech/Logitech Options/Plugins/`;
+
+  vscode.window.showInformationMessage(pluginPath);
+
+  // await fs.ensureDir(pluginPath);
+  fs.mkdirSync(pluginPath, { recursive: true, overwrite: true });
+  await fs.copy(__dirname + "\\manifest.json", pluginPath + "manifest.json", {
+    overwrite: true,
+  });
+};
