@@ -1,0 +1,59 @@
+{
+  "plugin_id": "logi_code_extend",
+  "name": "Logi VSCODE Extension",
+  "author": "Logitech Inc.",
+  "description": "Example plug-in for HackZürich",
+  "version": "1.0.0",
+  "colorScheme": "",
+  "URL": "https://www.logitech.com/",
+  "platformVersion": "1.0",
+  "OS": [
+    {
+      "platform": "mac",
+      "minimumVersion": "12.0"
+    },
+    {
+      "platform": "windows",
+      "minimumVersion": "10"
+    }
+  ],
+  "detection": {
+    "win": [
+      {
+        "executable": "Code.exe",
+        "registryKey": "",
+        "registryPath": ""
+      }
+    ],
+    "osx": [
+      {
+        "bundlePath": "/System/Applications/Code.app"
+      }
+    ]
+  },
+  "application": {
+    "minimumVersion": "1.0.0"
+  },
+
+  "actions": [
+    {
+      "id": "listen_logitech_plm",
+      "icon": "action_2.png",
+      "tooltip": "Display the weather in a location",
+      "name": "ListenLogitechPLM VERSION 2"
+    }
+  ],
+  "controls": [
+    {
+      "id": "logitech_fidgetspinner",
+      "tooltip": "Lorem ipsum",
+      "name": "Fidget Spinner",
+      "minimum": 0,
+      "maximum": 10,
+      "defaultStep": 1,
+      "minimumSensitivityThreshold": "0",
+      "maximumSensitivityThreshold": "0"
+    }
+  ],
+  "requiredCapabilities": ["base"]
+}

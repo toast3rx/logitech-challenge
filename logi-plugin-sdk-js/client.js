@@ -3,7 +3,7 @@
 // import Library from './library.js';
 // import BufferManager from './buffers/buffer_manager.js';
 
-const { ReconnectingWebSocket } = require('reconnecting-websocket');
+const  ReconnectingWebSocket  = require('reconnecting-websocket');
 const WS = require('ws');
 const Library = require('./library.js');
 const BufferManager = require('./buffers/buffer_manager.js');

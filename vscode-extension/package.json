@@ -9,7 +9,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [{
@@ -98,6 +100,8 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "logi-plugin-sdk": "file:../logi-plugin-sdk-js"
+    "fs-extra": "^10.1.0",
+    "logi-plugin-sdk": "file:../logi-plugin-sdk-js",
+    "open": "^9.1.0"
   }
 }
