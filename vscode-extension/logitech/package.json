@@ -1,0 +1,76 @@
+{
+  "name": "logitech",
+  "displayName": "logitech",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "logitech.helloWorld",
+      "title": "Hello World"
+    }],
+    "configuration": {
+      "title": "Logitech",
+      "properties": {
+        "Logitech.mouse.forwardButton": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the First Button"
+        },
+        "Logitech.mouse.backButton": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the Second Button"
+        },
+        "Logitech.mouse.wheelButton": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the Scroll Button"
+        },
+        "Logitech.mouse.topButton": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the Thumb Scroll"
+        },
+        "Logitech.mouse.thumbButton": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the Thumb Scroll"
+        },
+        "Logitech.mouse.thumbWheel": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the Thumb Button"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.82.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "eslint": "^8.47.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "@vscode/test-electron": "^2.3.4"
+  }
+}
