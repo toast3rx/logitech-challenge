@@ -31,7 +31,7 @@
             "enum": ["Option 1", "Option 2", "Option 3"],
             "description": "Configure action for the First Button"
         },
-        "Logitech.mouse.backButton": {
+        "Logitech.MXMaster3S.backButton": {
           "type": "string",
           "default": "",
           "enum": [
