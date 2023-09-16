@@ -12,24 +12,22 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "logitech.helloWorld",
-        "title": "Hello World"
-      }
-    ],
+    "commands": [{
+      "command": "logitech.identifiers",
+      "title": "Iterate through identifiers"
+    },
+    {
+      "command": "logitech.definition",
+      "title": "Go to definition"
+    }],
     "configuration": {
       "title": "Logitech",
       "properties": {
-        "Logitech.mouse.forwardButton": {
-          "type": "string",
-          "default": "",
-          "enum": [
-            "Option 1",
-            "Option 2",
-            "Option 3"
-          ],
-          "description": "Configure action for the First Button"
+        "Logitech.MX\u0020Master\u00203\u0008S.forwardButton": {
+            "type": "string",
+            "default": "",
+            "enum": ["Option 1", "Option 2", "Option 3"],
+            "description": "Configure action for the First Button"
         },
         "Logitech.mouse.backButton": {
           "type": "string",

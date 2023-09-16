@@ -3,43 +3,43 @@
 const vscode = require('vscode');
 const LogiClient = require('logi-plugin-sdk');
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+function iterateThroughIdentifiers() {
+    const editor = vscode.window.activeTextEditor;
+    let cursorPosition = editor.selection.start;
+    let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
 
-/**
- * @param {vscode.ExtensionContext} context
- */
+    vscode.commands.executeCommand('editor.action.wordHighlight.next', wordRange);
+}
+
+function goToDefinition() {
+    const editor = vscode.window.activeTextEditor;
+    let cursorPosition = editor.selection.start;
+    let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+
+    vscode.commands.executeCommand('editor.action.goToDeclaration', wordRange);
+}
+
 function activate(context) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "logitech" is now active!');
 
-    const activeEditor = vscode.window.activeTextEditor;
+    const editor = vscode.window.activeTextEditor;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('logitech.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+    let identifierDisposable = vscode.commands.registerCommand('logitech.identifiers', async () => {
+        let cursorPosition = editor.selection.start;
+        let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from logitech!');
+        vscode.commands.executeCommand('editor.action.wordHighlight.next', wordRange);
+    });
 
-        vscode.commands.executeCommand("vscode.executeWorkspaceSymbolProvider", "activate").then(
-            function (symbols) {
-                console.log(symbols[0].location.range)
+    let definitionDisposable = vscode.commands.registerCommand('logitech.definition', async () => {
+        let cursorPosition = editor.selection.start;
+        let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
 
-                // vscode.commands.executeCommand("vscode.executeDocumentHighlights", activeEditor.document.uri, symbols[1].location).then(
-                //     function (symbols) {
-                //         console.log(symbols)
-                //     }
-                // );
-            }
-        );
-	});
+        vscode.commands.executeCommand('editor.action.goToDeclaration', wordRange);
+    });
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(identifierDisposable);
+	context.subscriptions.push(definitionDisposable);
 }
 
 // This method is called when your extension is deactivated
