@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package logi.plugin.protocol;
+package test;
 
 message Envelope
 {
@@ -9,31 +9,32 @@ message Envelope
     optional ResponseInfo response = 3;
 }
 
+message Code
+{
+    enum ResCode
+    {
+        INVALID = 0;
+        INVALID_ARG = -1;
+        INVALID_DEVICE = -2;
+        NO_SUCH_PATH = -3;
+        CANCELLED = -4;
+        NOT_IMPLEMENTED = -5;
+        INVALID_VERB = -6;
+        NOT_READY = -7;
+        FAULTED = -8;
+        UNREACHABLE = -9;
+        UNAUTHORIZED = -10;
+        DUPLICATE_NAME = -11;
+        NOT_FOUND = -12;
+        EXCEPTION = -13;
+        CONFLICT = -14;
+        SUCCESS = 1;
+    }
+}
+
 message ResponseInfo
 {
-    message Code
-    {
-        enum ResCode
-        {
-            INVALID = 0;
-            INVALID_ARG = -1;
-            INVALID_DEVICE = -2;
-            NO_SUCH_PATH = -3;
-            CANCELLED = -4;
-            NOT_IMPLEMENTED = -5;
-            INVALID_VERB = -6;
-            NOT_READY = -7;
-            FAULTED = -8;
-            UNREACHABLE = -9;
-            UNAUTHORIZED = -10;
-            DUPLICATE_NAME = -11;
-            NOT_FOUND = -12;
-            EXCEPTION = -13;
-            CONFLICT = -14;
-            SUCCESS = 1;
-        }
-    }
-    repeated Code result = 1;
+    Code result = 1;
     string what = 2;
 }
 
@@ -63,12 +64,6 @@ message Settings
 message SettingsRequest
 {
     string setting_name =1;
-}
-
-message Settings
-{
-    string setting_name = 1;
-    string setting_value = 2;
 }
 
 message LogEvent
@@ -133,7 +128,7 @@ message Pong
 
 message RetryAfter
 {
-    int interval = 1;
+    int32 interval = 1;
 }
 
 message TriggerAction
@@ -141,23 +136,6 @@ message TriggerAction
     string action_instance_id = 1;
     string action_id = 2;
     optional string configuration = 3;
-}
-
-message ActionCellStatus
-{
-    enum IMAGE_TYPE
-    {
-        NONE = 0;
-        BASE64 = 1;
-        FILE = 2;
-    }
-    string action_instance_id= 1;
-    string action_id = 2;
-    optional string text = 3;
-    optional string image = 4;
-    optional IMAGE_TYPE image_type=5;
-    optional string error = 6;
-    optional Code error_code = 7;
 }
 
 message ReleaseAction
@@ -179,53 +157,11 @@ message UpdateAnalogControl
     }
 }
 
-message AnalogControlStatus
-{
-    enum IMAGE_TYPE
-    {
-        NONE = 0;
-        BASE64 = 1;
-        FILE = 2;
-    }
-    string analog_control_id = 1;
-    string analog_control_instance_id = 2;
-    optional float min_value = 3;
-    optional float max_value = 4;
-    optional float current_value = 5;
-    optional bool active = 6;
-    optional string text = 7;
-    optional string image = 8;
-    optional IMAGE_TYPE image_type=9;
-    optional string error = 10;
-    optional Code error_code = 11;
-}
-
 message GetAnalogControlValue
 {
     string analog_control_id = 1;
     string instance_id = 2;
     optional string configuration = 3;
-}
-
-message AnalogControlStatus
-{
-    enum IMAGE_TYPE
-    {
-        NONE = 0;
-        BASE64 = 1;
-        FILE = 2;
-    }
-    string analog_control_id = 1;
-    string analog_control_instance_id = 2;
-    optional float min_value = 3;
-    optional float max_value = 4;
-    optional float current_value = 5;
-    optional bool active = 6;
-    optional string text = 7;
-    optional string image = 8;
-    optional IMAGE_TYPE image_type=9;
-    optional string error = 10;
-    optional Code error_code = 11;
 }
 
 message VisibilityChanged
@@ -234,44 +170,6 @@ message VisibilityChanged
     string action_instance_id = 2;
     bool visible = 3;
     optional string configuration = 4;
-}
-
-message AnalogControlStatus
-{
-    enum IMAGE_TYPE
-    {
-        NONE = 0;
-        BASE64 = 1;
-        FILE = 2;
-    }
-    string analog_control_id = 1;
-    string analog_control_instance_id = 2;
-    optional float min_value = 3;
-    optional float max_value = 4;
-    optional float current_value = 5;
-    optional bool active = 6;
-    optional string text = 7;
-    optional string image = 8;
-    optional IMAGE_TYPE image_type=9;
-    optional string error = 10;
-    optional Code error_code = 11;
-}
-
-message ActionCellStatus
-{
-    enum IMAGE_TYPE
-    {
-        NONE = 0;
-        BASE64 = 1;
-        FILE = 2;
-    }
-    string action_instance_id= 1;
-    string action_id = 2;
-    optional string text = 3;
-    optional string image = 4;
-    optional IMAGE_TYPE image_type=5;
-    optional string error = 6;
-    optional Code error_code = 7;
 }
 
 message VisibilityChangedList
@@ -318,25 +216,6 @@ message PluginActionConfigurationResponse
     string form_result = 3;
 }
 
-message UserInfo
-{
-    string username = 1;
-    optional string printed_name = 2;
-    optional string icon = 3;
-}
-message PluginActionConfigurationSchemeResponse
-{
-    optional bool login_required = 1;
-    optional string selected_username = 2;
-    repeated UserInfo users = 3;
-    string action_id = 4;
-    string analog_control_id = 5;
-    string action_instance_id = 6;
-    optional string json_schema = 7;
-    optional string ui_schema = 8;
-    optional bool loging_required = 99;
-}
-
 message InitLogin
 {
     string redirect_url = 1;
@@ -358,12 +237,6 @@ message GetUserInfoList
 {
 }
 
-message UserInfo
-{
-    string username = 1;
-    optional string printed_name = 2;
-    optional string icon = 3;
-}
 message UserInfoList
 {
     repeated UserInfo user_info = 1;
