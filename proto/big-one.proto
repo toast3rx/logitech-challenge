@@ -82,7 +82,7 @@ message LogEvent
         ERROR = 4;
     }
     LOG_LEVEL log_level = 1;
-    string message =2
+    string message = 2;
 }
 
 message AnalogControlStatus
@@ -115,7 +115,7 @@ message ActionCellStatus
         FILE = 2;
     }
     string action_instance_id= 1;
-    string action_id = 2
+    string action_id = 2;
     optional string text = 3;
     optional string image = 4;
     optional IMAGE_TYPE image_type=5;
@@ -152,7 +152,7 @@ message ActionCellStatus
         FILE = 2;
     }
     string action_instance_id= 1;
-    string action_id = 2
+    string action_id = 2;
     optional string text = 3;
     optional string image = 4;
     optional IMAGE_TYPE image_type=5;
@@ -266,7 +266,7 @@ message ActionCellStatus
         FILE = 2;
     }
     string action_instance_id= 1;
-    string action_id = 2
+    string action_id = 2;
     optional string text = 3;
     optional string image = 4;
     optional IMAGE_TYPE image_type=5;
