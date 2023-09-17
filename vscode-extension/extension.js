@@ -6,23 +6,45 @@ const LogiClient = require('logi-plugin-sdk');
 const fs = require('fs-extra');
 const os = require('os');
 
+const eventIdMap = {
+	'mx-master-3s-2b034_c86': 'MX\u0020Master\u00203\u0008S.forwardButton',
+	'mx-master-3s-2b034_c83': 'MX\u0020Master\u00203\u0008S.backButton',
+	'mx-master-3s-2b034_c82': 'MX\u0020Master\u00203\u0008S.middleButton',
+	'mx-master-3s-2b034_c195': 'MX\u0020Master\u00203\u0008S.thumbButton',
+	'mx-master-3s-2b034_c196': 'MX\u0020Master\u00203\u0008S.topButton',
+	// keyboard
+	'mx-mechanical-2b366_c199': 'MX\u0020Mechanical.f1',
+	'mx-mechanical-2b366_c200': 'MX\u0020Mechanical.f2',
+	'mx-mechanical-2b366_c226': 'MX\u0020Mechanical.f3',
+	'mx-mechanical-2b366_c227': 'MX\u0020Mechanical.f4',
+	'mx-mechanical-2b366_c259': 'MX\u0020Mechanical.f5',
+	'mx-mechanical-2b366_c264': 'MX\u0020Mechanical.f6',
+	'mx-mechanical-2b366_c266': 'MX\u0020Mechanical.f7',
+	'mx-mechanical-2b366_c284': 'MX\u0020Mechanical.f8',
+	'mx-mechanical-2b366_c228': 'MX\u0020Mechanical.f9',
+	'mx-mechanical-2b366_c229': 'MX\u0020Mechanical.f10',
+	'mx-mechanical-2b366_c230': 'MX\u0020Mechanical.f11',
+	'mx-mechanical-2b366_c231': 'MX\u0020Mechanical.f12',
+	'mx-mechanical-2b366_c232': 'MX\u0020Mechanical.volumeDown',
+	'mx-mechanical-2b366_c233': 'MX\u0020Mechanical.volumeUp',
+	'mx-mechanical-2b366_c278': 'MX\u0020Mechanical.insert',
+	'mx-mechanical-2b366_c280': 'MX\u0020Mechanical.Home',
+	'mx-mechanical-2b366_c282': 'MX\u0020Mechanical.pageUp',
+	'mx-mechanical-2b366_c281': 'MX\u0020Mechanical.end',
+	'mx-mechanical-2b366_c283': 'MX\u0020Mechanical.pageDown',
+	'mx-mechanical-2b366_c10': 'MX\u0020Mechanical.numLock',
+	'mx-mechanical-2b366_c110': 'MX\u0020Mechanical.project',
+	'mx-mechanical-2b366_c212': 'MX\u0020Mechanical.search',
+	'mx-mechanical-2b366_c111': 'MX\u0020Mechanical.lock',
+}
+
 function eventIdToConfigurationProperty(eventId) {
-    switch (eventId) {
-        case 'mx-master-3s-2b034_c86':
-            return 'MX\u0020Master\u00203\u0008S.forwardButton';
-        case 'mx-master-3s-2b034_c83':
-            return 'MX\u0020Master\u00203\u0008S.backButton';
-        case 'mx-master-3s-2b034_c82':
-            return 'MX\u0020Master\u00203\u0008S.middleButton';
-        case 'mx-master-3s-2b034_c195':
-            return 'MX\u0020Master\u00203\u0008S.thumbButton';
-        case 'mx-master-3s-2b034_c196':
-            return 'MX\u0020Master\u00203\u0008S.topButton';
-    }
+    return eventIdMap[eventId];
 }
 
 function configurationPropertyToAction(configurationProperty) {
     let config = vscode.workspace.getConfiguration('Logitech').get(configurationProperty);
+	console.log(config);
 
     switch (config) {
         case 'Go to definition':
@@ -30,6 +52,7 @@ function configurationPropertyToAction(configurationProperty) {
             console.log(config);
             return;
         case 'Iterate through iterators forward':
+			console.log(config);
             iterateThroughIdentifiersForward();
             console.log(config);
             return;
@@ -58,7 +81,7 @@ function iterateThroughIdentifiersBackward() {
     let cursorPosition = editor.selection.start;
     let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
 
-    vscode.commands.executeCommand('editor.action.wordHighlight.previous', wordRange);
+    vscode.commands.executeCommand('editor.action.wordHighlight.prev', wordRange);
 }
 
 function goToDefinition() {
@@ -96,37 +119,17 @@ function activate(context) {
     const THUMB_BUTTON = "mx-master-3s-2b034_c195";
     const PROFILE_BUTTON = "mx-master-3s-2b034_c196";
 
-    clientApp.onTriggerAction = async ({ id, message }) => {
-        // console.log('onTriggerAction', id, message);
+    clientApp.onTriggerAction = async (event) => {
+        console.log('onTriggerAction', event);
 
         vscode.window.showInformationMessage("Triggered...!");
 
-
-        switch (message.actionInstanceId) {
-        case FIRST_BUTTON:
-            // console.log("First button pressed");
-            break;
-        case SECOND_BUTTON:
-            // console.log("Second button pressed");
-            break;
-        case SCROLL_BUTTON:
-            // console.log("Scroll button pressed");
-            break;
-        case PROFILE_BUTTON:
-            console.log("Profile button pressed");
-
-            break;
-        case THUMB_BUTTON:
-            console.log("Thumb button pressed");
-            break;
-        default:
-            console.log(message);
-        }
+		eventIdToAction(event.message.actionInstanceId);
     };
-
-    clientApp.onUpdateAnalogControl = async ({ id, message }) => {
+	
+	clientApp.onUpdateAnalogControl = async ({ id, message }) => {
         // message.delta = direction of the wheel
-        // > 0 => going up, < -0 => going down
+        // > 0 => going up, < -0 => going down 
         // console.log('onUpdateAnalogControl', id, message);
         console.log("Wheel moved");
         vscode.window.showInformationMessage("Wheel moved...!");
