@@ -224,10 +224,25 @@ function activate(context) {
     // });
     // context.subscriptions.push(disposable);
 
-    let disposable = vscode.commands.registerCommand('logitech.goToDefinition', () => {
+    let definitionDisposable = vscode.commands.registerCommand('logitech.goToDefinition', () => {
         goToDefinition();
     });
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(definitionDisposable);
+
+    let forwardIterateDisposable = vscode.commands.registerCommand('logitech.iterateThroughIdentifiersForward', () => {
+        iterateThroughIdentifiersForward();
+    });
+    context.subscriptions.push(forwardIterateDisposable);
+
+    let backwardIterateDisposable = vscode.commands.registerCommand('logitech.iterateThroughIdentifiersBackward', () => {
+        iterateThroughIdentifiersBackward();
+    });
+    context.subscriptions.push(backwardIterateDisposable);
+
+    let GPTDisposable = vscode.commands.registerCommand('logitech.askGPT', () => {
+        askGPT();
+    });
+    context.subscriptions.push(GPTDisposable);
 
     clientApp.onTriggerAction = async (event) => {
         console.log('onTriggerAction', event);
