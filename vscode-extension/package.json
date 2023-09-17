@@ -15,16 +15,20 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "logitech.identifiers",
-      "title": "Logitech: Iterate through identifiers"
+      "command": "logitech.iterateThroughIdentifiersForward",
+      "title": "Logitech: Iterate forward through identifiers"
+    },
+    {
+      "command": "logitech.iterateThroughIdentifiersBackward",
+      "title": "Logitech: Iterate backward through identifiers"
     },
     {
       "command": "logitech.goToDefinition",
       "title": "Logitech: Go to definition"
     },
     {
-      "command": "logitech.emoji",
-      "title": "Logitech: Open emoji picker"
+      "command": "logitech.askGPT",
+      "title": "Logitech: Open GPT"
     }],
     "keybindings": [{
       "command": "logitech.emoji",

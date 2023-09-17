@@ -1,8 +1,8 @@
 const vscode = require('vscode');
-const LogiClient = require('logi-plugin-sdk');
+// const LogiClient = require('logi-plugin-sdk');
 
-const fs = require('fs-extra');
-const os = require('os');
+// const fs = require('fs-extra');
+// const os = require('os');
 
 // mouse
 const FORWARD_BUTTON = "mx-master-3s-2b034_c86";
@@ -192,11 +192,11 @@ class GptCaller {
 }
 
 function askGPT() {
-    let apiKey = vscode.workspace.getConfiguration('Logitech').get("Logitech.MX\u0020Mechanical.search.chatGPT");
-    if (apiKey === "") {
-        console.log("You need to provide an API Key");
-        return;
-    }
+    // let apiKey = vscode.workspace.getConfiguration('Logitech').get("Logitech.MX\u0020Mechanical.search.chatGPT");
+    // if (apiKey === "") {
+    //     console.log("You need to provide an API Key");
+    //     return;
+    // }
 
     vscode.env.openExternal("https://chat.openai.com");
 }
@@ -206,25 +206,25 @@ function askGPT() {
 // -----------------------
 
 function activate(context) {
-    const isInitialInstall = context.globalState.get("isInitialInstall", true);
+    // const isInitialInstall = context.globalState.get("isInitialInstall", true);
 
-    // Change to true/false for debugging
-    if (isInitialInstall) {
-        // Show a welcome message
-        vscode.window.showInformationMessage("Installing!");
-        install();
-        // Update the global state so that the welcome message won't be shown again
-        context.globalState.update("isInitialInstall", false);
-    }  
+    // // Change to true/false for debugging
+    // if (isInitialInstall) {
+    //     // Show a welcome message
+    //     vscode.window.showInformationMessage("Installing!");
+    //     install();
+    //     // Update the global state so that the welcome message won't be shown again
+    //     context.globalState.update("isInitialInstall", false);
+    // }  
 
-    const initialData = {
-        pluginId: "logi_code_extend",
-        pluginCode: "123",
-        pluginVersion: "1.2.3",
-    };
+    // const initialData = {
+    //     pluginId: "logi_code_extend",
+    //     pluginCode: "123",
+    //     pluginVersion: "1.2.3",
+    // };
 
-    const clientApp = new LogiClient(initialData);
-    clientApp.init();
+    // const clientApp = new LogiClient(initialData);
+    // clientApp.init();
 
     // openEmojiPicker(context);
 
