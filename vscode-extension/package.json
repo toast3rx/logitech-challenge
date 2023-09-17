@@ -25,6 +25,10 @@
     "configuration": {
       "title": "Logitech",
       "properties": {
+        "Logitech.MX\u0020Mechanical.search.chatGPT" : {
+          "type": "string",
+          "description": "OpenAI key"
+        },
         "Logitech.MX\u0020Master\u00203\u0008S.forwardButton": {
           "type": "string",
           "default": "",
