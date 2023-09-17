@@ -75,6 +75,16 @@ function eventIdToConfigurationProperty(eventId) {
     return eventIdMap[eventId];
 }
 
+
+openGptPrompt = () => {
+	const searchQuery = await vscode.window.showInputBox({
+  placeHolder: "Search query",
+  prompt: "Search my snippets on Codever",
+  value: selectedText
+});
+
+}
+
 function configurationPropertyToAction(configurationProperty) {
     let config = vscode.workspace.getConfiguration('Logitech').get(configurationProperty);
 	console.log(config);
