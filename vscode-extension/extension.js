@@ -15,7 +15,7 @@ const F1_BUTTON = "mx-mechanical-2b366_c199"
 const F2_BUTTON = "mx-mechanical-2b366_c200"
 const F3_BUTTON = "mx-mechanical-2b366_c226"
 const F4_BUTTON = "mx-mechanical-2b366_c227"
-const F5_BUTTON = "mx-mechanical-2b366_c259"
+const F5_BUTTON = "mx-mechanical-2b366_c259"  // openFiles
 const F6_BUTTON = "mx-mechanical-2b366_c264"
 const F7_BUTTON = "mx-mechanical-2b366_c266"
 const F8_BUTTON = "mx-mechanical-2b366_c284"
@@ -32,7 +32,7 @@ const PAGE_DOWN_BUTTON = "mx-mechanical-2b366_c283"
 const PAGE_UP_BUTTON = "mx-mechanical-2b366_c282"
 const NUMLOCK_BUTTON = "mx-mechanical-2b366_c10"
 const PROJECT_BUTTON = "mx-mechanical-2b366_c110"
-const SEARCH_BUTTON = "mx-mechanical-2b366_c212"
+const SEARCH_BUTTON = "mx-mechanical-2b366_c212"  // askGPT
 const LOCK_BUTTON = "mx-mechanical-2b366_c111"
 
 const eventIdMap = {
@@ -79,7 +79,9 @@ function configurationPropertyToAction(configurationProperty) {
     let config = vscode.workspace.getConfiguration('Logitech').get(configurationProperty);
 	console.log(config);
 
-    eval(config + '()');
+    // eval(config + '()');
+
+    vscode.commands.executeCommand(config);
 }
 
 function eventIdToAction(eventId) {
@@ -113,6 +115,36 @@ function goToDefinition() {
     let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
 
     vscode.commands.executeCommand('editor.action.goToDeclaration', wordRange);
+}
+
+function openFiles() {
+    const options = {
+        canSelectMany: true,
+        openLabel: 'Open',
+   };
+
+   vscode.window.showOpenDialog(options).then(fileUri => {
+       if (fileUri && fileUri[0]) {
+           console.log('Selected file: ' + fileUri[0].fsPath);
+       }
+   });
+}
+
+function selectMultiple() {
+
+}
+
+function openEmojiPicker(context) {
+    let disposable = vscode.commands.registerCommand('extension.emoji', () => {
+        console.log("test");
+        console.log($(function() {
+            var e = $.Event('keypress');
+            e.which = 65; // Character 'A'
+            $('item').trigger(e);
+        }));
+    });
+
+    context.subscriptions.push(disposable);
 }
 
 class GptCaller {
@@ -184,7 +216,18 @@ function activate(context) {
     const clientApp = new LogiClient(initialData);
     clientApp.init();
 
-    // eventIdToAction(SEARCH_BUTTON);
+    // openEmojiPicker(context);
+
+    // let disposable = vscode.commands.registerCommand('logitech.emoji', () => {
+    //     console.log("test");
+    //     let keystrokeEvent = new KeyboardEvent("keypress", key = "a");
+    // });
+    // context.subscriptions.push(disposable);
+
+    let disposable = vscode.commands.registerCommand('logitech.goToDefinition', () => {
+        goToDefinition();
+    });
+    context.subscriptions.push(disposable);
 
     clientApp.onTriggerAction = async (event) => {
         console.log('onTriggerAction', event);
@@ -205,7 +248,6 @@ function activate(context) {
 
 // This method is called when your extension is deactivated
 function deactivate() {}
-
 
 const install = async () => {
   const isWin = process.platform === "win32";

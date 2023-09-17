@@ -16,11 +16,26 @@
   "contributes": {
     "commands": [{
       "command": "logitech.identifiers",
-      "title": "Iterate through identifiers"
+      "title": "Logitech: Iterate through identifiers"
     },
     {
-      "command": "logitech.definition",
-      "title": "Go to definition"
+      "command": "logitech.goToDefinition",
+      "title": "Logitech: Go to definition"
+    },
+    {
+      "command": "logitech.emoji",
+      "title": "Logitech: Open emoji picker"
+    }],
+    "keybindings": [{
+      "command": "logitech.emoji",
+      "key": "windows+.",
+      "mac": "cmd+ctrl+space",
+      "when": "editorTextFocus"
+    },
+    {
+      "command": "logitech.emoji",
+      "key": "f6",
+      "when": "editorTextFocus"
     }],
     "configuration": {
       "title": "Logitech",
