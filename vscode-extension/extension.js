@@ -22,10 +22,27 @@ function eventIdToConfigurationProperty(eventId) {
 }
 
 function configurationPropertyToAction(configurationProperty) {
-    let uri = vscode.window.activeTextEditor.document.uri;
-    let config = vscode.workspace.getConfiguration().get(configurationProperty);
+    let config = vscode.workspace.getConfiguration('Logitech').get(configurationProperty);
 
-    console.log(config);
+    switch (config) {
+        case 'Go to definition':
+            goToDefinition();
+            console.log(config);
+            return;
+        case 'Iterate through iterators forward':
+            iterateThroughIdentifiersForward();
+            console.log(config);
+            return;
+        case 'Iterate through iterators backward':
+            iterateThroughIdentifiersBackward();
+            console.log(config);
+            return;
+    }
+}
+
+function eventIdToAction(eventId) {
+    let configurationProperty = eventIdToConfigurationProperty(eventId);
+    configurationPropertyToAction(configurationProperty);
 }
 
 function iterateThroughIdentifiersForward() {
@@ -36,7 +53,7 @@ function iterateThroughIdentifiersForward() {
     vscode.commands.executeCommand('editor.action.wordHighlight.next', wordRange);
 }
 
-function iterateThroughIdentifiersBackword() {
+function iterateThroughIdentifiersBackward() {
     const editor = vscode.window.activeTextEditor;
     let cursorPosition = editor.selection.start;
     let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);

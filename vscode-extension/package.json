@@ -26,60 +26,61 @@
       "title": "Logitech",
       "properties": {
         "Logitech.MX\u0020Master\u00203\u0008S.forwardButton": {
-            "type": "string",
-            "default": "",
-            "enum": ["Option 1", "Option 2", "Option 3"],
-            "description": "Configure action for the First Button"
+          "type": "string",
+          "default": "Iterate through iterators forward",
+          "enum": [
+            "Iterate through iterators forward",
+            "Iterate through iterators backward"
+          ],
+          "description": "Configure action for the Forward Button"
         },
-        "Logitech.MXMaster3S.backButton": {
+        "Logitech.MX\u0020Master\u00203\u0008S.backButton": {
+          "type": "string",
+          "default": "Iterate through iterators backward",
+          "enum": [
+            "Iterate through iterators forward",
+            "Iterate through iterators backward"
+          ],
+          "description": "Configure action for the Back Button"
+        },
+        "Logitech.MX\u0020Master\u00203\u0008S.middleButton": {
           "type": "string",
           "default": "",
           "enum": [
-            "Option 1",
+            "Go to definition",
             "Option 2",
             "Option 3"
           ],
-          "description": "Configure action for the Second Button"
+          "description": "Configure action for the Middle Button"
         },
-        "Logitech.mouse.wheelButton": {
+        "Logitech.MX\u0020Master\u00203\u0008S.topButton": {
           "type": "string",
           "default": "",
           "enum": [
-            "Option 1",
+            "Go to definition",
             "Option 2",
             "Option 3"
           ],
-          "description": "Configure action for the Scroll Button"
+          "description": "Configure action for the Top Button"
         },
-        "Logitech.mouse.topButton": {
+        "Logitech.MX\u0020Master\u00203\u0008S.thumbButton": {
           "type": "string",
           "default": "",
           "enum": [
-            "Option 1",
+            "Go to definition",
             "Option 2",
             "Option 3"
           ],
-          "description": "Configure action for the Thumb Scroll"
+          "description": "Configure action for the Thumb Button (Gestures)"
         },
-        "Logitech.mouse.thumbButton": {
+        "Logitech.MX\u0020Master\u00203\u0008S.thumbWheel": {
           "type": "string",
           "default": "",
           "enum": [
-            "Option 1",
-            "Option 2",
-            "Option 3"
+            "Iterate through iterators forward",
+            "Iterate through iterators backward"
           ],
-          "description": "Configure action for the Thumb Scroll"
-        },
-        "Logitech.mouse.thumbWheel": {
-          "type": "string",
-          "default": "",
-          "enum": [
-            "Option 1",
-            "Option 2",
-            "Option 3"
-          ],
-          "description": "Configure action for the Thumb Button"
+          "description": "Configure action for the Thumb Wheel"
         }
       }
     }
