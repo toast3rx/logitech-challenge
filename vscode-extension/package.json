@@ -27,60 +27,148 @@
       "properties": {
         "Logitech.MX\u0020Master\u00203\u0008S.forwardButton": {
           "type": "string",
-          "default": "Iterate through iterators forward",
-          "enum": [
-            "Iterate through iterators forward",
-            "Iterate through iterators backward"
-          ],
+          "default": "",
           "description": "Configure action for the Forward Button"
         },
         "Logitech.MX\u0020Master\u00203\u0008S.backButton": {
           "type": "string",
-          "default": "Iterate through iterators backward",
-          "enum": [
-            "Iterate through iterators forward",
-            "Iterate through iterators backward"
-          ],
+          "default": "",
           "description": "Configure action for the Back Button"
         },
         "Logitech.MX\u0020Master\u00203\u0008S.middleButton": {
           "type": "string",
           "default": "",
-          "enum": [
-            "Go to definition",
-            "Option 2",
-            "Option 3"
-          ],
           "description": "Configure action for the Middle Button"
         },
         "Logitech.MX\u0020Master\u00203\u0008S.topButton": {
           "type": "string",
           "default": "",
-          "enum": [
-            "Go to definition",
-            "Option 2",
-            "Option 3"
-          ],
           "description": "Configure action for the Top Button"
         },
         "Logitech.MX\u0020Master\u00203\u0008S.thumbButton": {
           "type": "string",
           "default": "",
-          "enum": [
-            "Go to definition",
-            "Option 2",
-            "Option 3"
-          ],
           "description": "Configure action for the Thumb Button (Gestures)"
         },
         "Logitech.MX\u0020Master\u00203\u0008S.thumbWheel": {
           "type": "string",
           "default": "",
-          "enum": [
-            "Iterate through iterators forward",
-            "Iterate through iterators backward"
-          ],
           "description": "Configure action for the Thumb Wheel"
+        },
+        "Logitech.MX\u0020Mechanical.f1": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F1 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f2": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F2 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f3": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F3 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f4": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F4 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f5": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F5 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f6": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F6 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f7": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F7 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f8": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F8 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f9": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F9 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f10": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F10 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f11": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F11 Button"
+        },
+        "Logitech.MX\u0020Mechanical.f12": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the F12 Button"
+        },
+        "Logitech.MX\u0020Mechanical.volumeDown": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Volume Down Button"
+        },
+        "Logitech.MX\u0020Mechanical.volumeUp": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Volume Up Button"
+        },
+        "Logitech.MX\u0020Mechanical.insert": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Insert Button"
+        },
+        "Logitech.MX\u0020Mechanical.home": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Home Button"
+        },
+        "Logitech.MX\u0020Mechanical.end": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the End Button"
+        },
+        "Logitech.MX\u0020Mechanical.pageDown": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the PageDown Button"
+        },
+        "Logitech.MX\u0020Mechanical.pageUp": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the PageUp Button"
+        },
+        "Logitech.MX\u0020Mechanical.numLock": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the NumLock Button"
+        },
+        "Logitech.MX\u0020Mechanical.project": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Project Button"
+        },
+        "Logitech.MX\u0020Mechanical.search": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Search Button"
+        },
+        "Logitech.MX\u0020Mechanical.lock": {
+          "type": "string",
+          "default": "",
+          "description": "Configure action for the Lock Button"
         }
       }
     }

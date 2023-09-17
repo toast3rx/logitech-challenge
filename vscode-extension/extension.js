@@ -1,5 +1,3 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const LogiClient = require('logi-plugin-sdk');
 
@@ -28,7 +26,7 @@ const eventIdMap = {
 	'mx-mechanical-2b366_c232': 'MX\u0020Mechanical.volumeDown',
 	'mx-mechanical-2b366_c233': 'MX\u0020Mechanical.volumeUp',
 	'mx-mechanical-2b366_c278': 'MX\u0020Mechanical.insert',
-	'mx-mechanical-2b366_c280': 'MX\u0020Mechanical.Home',
+	'mx-mechanical-2b366_c280': 'MX\u0020Mechanical.home',
 	'mx-mechanical-2b366_c282': 'MX\u0020Mechanical.pageUp',
 	'mx-mechanical-2b366_c281': 'MX\u0020Mechanical.end',
 	'mx-mechanical-2b366_c283': 'MX\u0020Mechanical.pageDown',
@@ -38,6 +36,10 @@ const eventIdMap = {
 	'mx-mechanical-2b366_c111': 'MX\u0020Mechanical.lock',
 }
 
+// ------------------
+// Utils
+// ------------------
+
 function eventIdToConfigurationProperty(eventId) {
     return eventIdMap[eventId];
 }
@@ -46,27 +48,17 @@ function configurationPropertyToAction(configurationProperty) {
     let config = vscode.workspace.getConfiguration('Logitech').get(configurationProperty);
 	console.log(config);
 
-    switch (config) {
-        case 'Go to definition':
-            goToDefinition();
-            console.log(config);
-            return;
-        case 'Iterate through iterators forward':
-			console.log(config);
-            iterateThroughIdentifiersForward();
-            console.log(config);
-            return;
-        case 'Iterate through iterators backward':
-            iterateThroughIdentifiersBackward();
-            console.log(config);
-            return;
-    }
+    eval(config + '()');
 }
 
 function eventIdToAction(eventId) {
     let configurationProperty = eventIdToConfigurationProperty(eventId);
     configurationPropertyToAction(configurationProperty);
 }
+
+// ------------------
+// Action handlers
+// ------------------
 
 function iterateThroughIdentifiersForward() {
     const editor = vscode.window.activeTextEditor;
@@ -119,6 +111,8 @@ function activate(context) {
     const THUMB_BUTTON = "mx-master-3s-2b034_c195";
     const PROFILE_BUTTON = "mx-master-3s-2b034_c196";
 
+    // eventIdToAction(FIRST_BUTTON);
+
     clientApp.onTriggerAction = async (event) => {
         console.log('onTriggerAction', event);
 
@@ -140,11 +134,6 @@ function activate(context) {
 function deactivate() {}
 
 
-
-// export {
-// 	activate,
-// 	deactivate,
-// }
 const install = async () => {
   const isWin = process.platform === "win32";
 
