@@ -1,6 +1,6 @@
 {
   "plugin_id": "logi_code_extend",
-  "name": "Logi VSCODE Extension",
+  "name": "Logitech VSCode Extension",
   "author": "Logitech Inc.",
   "description": "Example plug-in for HackZürich",
   "version": "1.0.0",
@@ -40,14 +40,14 @@
       "id": "listen_logitech_plm",
       "icon": "action_2.png",
       "tooltip": "Display the weather in a location",
-      "name": "ListenLogitechPLM VERSION 2"
+      "name": "Button Press"
     }
   ],
   "controls": [
     {
       "id": "logitech_fidgetspinner",
       "tooltip": "Lorem ipsum",
-      "name": "Fidget Spinner",
+      "name": "Analog Control",
       "minimum": 0,
       "maximum": 10,
       "defaultStep": 1,

@@ -1,8 +1,8 @@
 const vscode = require('vscode');
-// const LogiClient = require('logi-plugin-sdk');
+const LogiClient = require('logi-plugin-sdk');
 
-// const fs = require('fs-extra');
-// const os = require('os');
+const fs = require('fs-extra');
+const os = require('os');
 
 // mouse
 const FORWARD_BUTTON = "mx-master-3s-2b034_c86";
@@ -36,35 +36,35 @@ const SEARCH_BUTTON = "mx-mechanical-2b366_c212"  // askGPT
 const LOCK_BUTTON = "mx-mechanical-2b366_c111"
 
 const eventIdMap = {
-	'mx-master-3s-2b034_c86': 'MX\u0020Master\u00203\u0008S.forwardButton',
-	'mx-master-3s-2b034_c83': 'MX\u0020Master\u00203\u0008S.backButton',
-	'mx-master-3s-2b034_c82': 'MX\u0020Master\u00203\u0008S.middleButton',
-	'mx-master-3s-2b034_c195': 'MX\u0020Master\u00203\u0008S.thumbButton',
-	'mx-master-3s-2b034_c196': 'MX\u0020Master\u00203\u0008S.topButton',
+	[FORWARD_BUTTON]: 'MX\u0020Master\u00203\u0008S.forwardButton',
+	[BACK_BUTTON]: 'MX\u0020Master\u00203\u0008S.backButton',
+	[MIDDLE_BUTTON]: 'MX\u0020Master\u00203\u0008S.middleButton',
+	[THUMB_BUTTON]: 'MX\u0020Master\u00203\u0008S.thumbButton',
+	[TOP_BUTTON]: 'MX\u0020Master\u00203\u0008S.topButton',
 	// keyboard
-	'mx-mechanical-2b366_c199': 'MX\u0020Mechanical.f1',
-	'mx-mechanical-2b366_c200': 'MX\u0020Mechanical.f2',
-	'mx-mechanical-2b366_c226': 'MX\u0020Mechanical.f3',
-	'mx-mechanical-2b366_c227': 'MX\u0020Mechanical.f4',
-	'mx-mechanical-2b366_c259': 'MX\u0020Mechanical.f5',
-	'mx-mechanical-2b366_c264': 'MX\u0020Mechanical.f6',
-	'mx-mechanical-2b366_c266': 'MX\u0020Mechanical.f7',
-	'mx-mechanical-2b366_c284': 'MX\u0020Mechanical.f8',
-	'mx-mechanical-2b366_c228': 'MX\u0020Mechanical.f9',
-	'mx-mechanical-2b366_c229': 'MX\u0020Mechanical.f10',
-	'mx-mechanical-2b366_c230': 'MX\u0020Mechanical.f11',
-	'mx-mechanical-2b366_c231': 'MX\u0020Mechanical.f12',
-	'mx-mechanical-2b366_c232': 'MX\u0020Mechanical.volumeDown',
-	'mx-mechanical-2b366_c233': 'MX\u0020Mechanical.volumeUp',
-	'mx-mechanical-2b366_c278': 'MX\u0020Mechanical.insert',
-	'mx-mechanical-2b366_c280': 'MX\u0020Mechanical.home',
-	'mx-mechanical-2b366_c281': 'MX\u0020Mechanical.end',
-	'mx-mechanical-2b366_c283': 'MX\u0020Mechanical.pageDown',
-	'mx-mechanical-2b366_c282': 'MX\u0020Mechanical.pageUp',
-	'mx-mechanical-2b366_c10': 'MX\u0020Mechanical.numLock',
-	'mx-mechanical-2b366_c110': 'MX\u0020Mechanical.project',
-	'mx-mechanical-2b366_c212': 'MX\u0020Mechanical.search',
-	'mx-mechanical-2b366_c111': 'MX\u0020Mechanical.lock',
+	[F1_BUTTON]: 'MX\u0020Mechanical.f1',
+	[F2_BUTTON]: 'MX\u0020Mechanical.f2',
+	[F3_BUTTON]: 'MX\u0020Mechanical.f3',
+	[F4_BUTTON]: 'MX\u0020Mechanical.f4',
+	[F5_BUTTON]: 'MX\u0020Mechanical.f5',
+	[F6_BUTTON]: 'MX\u0020Mechanical.f6',
+	[F7_BUTTON]: 'MX\u0020Mechanical.f7',
+	[F8_BUTTON]: 'MX\u0020Mechanical.f8',
+	[F9_BUTTON]: 'MX\u0020Mechanical.f9',
+	[F10_BUTTON]: 'MX\u0020Mechanical.f10',
+	[F11_BUTTON]: 'MX\u0020Mechanical.f11',
+	[F12_BUTTON]: 'MX\u0020Mechanical.f12',
+	[VOLUME_DOWN_BUTTON]: 'MX\u0020Mechanical.volumeDown',
+	[VOLUME_UP_BUTTON]: 'MX\u0020Mechanical.volumeUp',
+	[INSERT_BUTTON]: 'MX\u0020Mechanical.insert',
+	[HOME_BUTTON]: 'MX\u0020Mechanical.home',
+	[PAGE_DOWN_BUTTON]: 'MX\u0020Mechanical.end',
+	[PAGE_DOWN_BUTTON]: 'MX\u0020Mechanical.pageDown',
+	[PAGE_UP_BUTTON]: 'MX\u0020Mechanical.pageUp',
+	[NUMLOCK_BUTTON]: 'MX\u0020Mechanical.numLock',
+	[PROJECT_BUTTON]: 'MX\u0020Mechanical.project',
+	[SEARCH_BUTTON]: 'MX\u0020Mechanical.search',
+	[LOCK_BUTTON]: 'MX\u0020Mechanical.lock',
 }
 
 // -----------------------
@@ -77,20 +77,15 @@ function eventIdToConfigurationProperty(eventId) {
 
 
 openGptPrompt = () => {
-	const searchQuery = await vscode.window.showInputBox({
-  placeHolder: "Search query",
-  prompt: "Search my snippets on Codever",
-  value: selectedText
-});
-
+// 	const searchQuery = await vscode.window.showInputBox({
+//   placeHolder: "Search query",
+//   prompt: "Search my snippets on Codever",
+//   value: selectedText
+// });
 }
 
 function configurationPropertyToAction(configurationProperty) {
     let config = vscode.workspace.getConfiguration('Logitech').get(configurationProperty);
-	console.log(config);
-
-    // eval(config + '()');
-
     vscode.commands.executeCommand(config);
 }
 
@@ -123,6 +118,7 @@ function goToDefinition() {
     const editor = vscode.window.activeTextEditor;
     let cursorPosition = editor.selection.start;
     let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+
 
     vscode.commands.executeCommand('editor.action.goToDeclaration', wordRange);
 }
@@ -190,7 +186,9 @@ class GptCaller {
         return res.content;
     }
 }
-
+/**
+ * Prototype function to ask GPT 
+ */
 function askGPT() {
     // let apiKey = vscode.workspace.getConfiguration('Logitech').get("Logitech.MX\u0020Mechanical.search.chatGPT");
     // if (apiKey === "") {
@@ -206,25 +204,25 @@ function askGPT() {
 // -----------------------
 
 function activate(context) {
-    // const isInitialInstall = context.globalState.get("isInitialInstall", true);
+    const isInitialInstall = context.globalState.get("isInitialInstall", true);
 
-    // // Change to true/false for debugging
-    // if (isInitialInstall) {
-    //     // Show a welcome message
-    //     vscode.window.showInformationMessage("Installing!");
-    //     install();
-    //     // Update the global state so that the welcome message won't be shown again
-    //     context.globalState.update("isInitialInstall", false);
-    // }  
+    // Change to true/false for debugging
+    if (isInitialInstall) {
+        // Show a welcome message
+        vscode.window.showInformationMessage("Installing!");
+        install();
+        // Update the global state so that the welcome message won't be shown again
+        context.globalState.update("isInitialInstall", false);
+    }  
 
-    // const initialData = {
-    //     pluginId: "logi_code_extend",
-    //     pluginCode: "123",
-    //     pluginVersion: "1.2.3",
-    // };
+    const initialData = {
+        pluginId: "logi_code_extend",
+        pluginCode: "123",
+        pluginVersion: "1.2.3",
+    };
 
-    // const clientApp = new LogiClient(initialData);
-    // clientApp.init();
+    const clientApp = new LogiClient(initialData);
+    clientApp.init();
 
     // openEmojiPicker(context);
 
@@ -286,7 +284,6 @@ const install = async () => {
 
   vscode.window.showInformationMessage(pluginPath);
 
-  // await fs.ensureDir(pluginPath);
   fs.mkdirSync(pluginPath, { recursive: true, overwrite: true });
   await fs.copy(__dirname + "\\manifest.json", pluginPath + "manifest.json", {
     overwrite: true,
